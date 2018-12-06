@@ -10,7 +10,7 @@ OBJS_ENSEM = RandomForest.o
 CXX = g++
 LD = g++
 
-WARNINGs = -pedantic -Wall -Werror -Wfatal-errors -Wextra -Wno-unused-parameter -Wno-unused-variable
+WARNINGS = -pedantic -Wall -Werror -Wfatal-errors -Wextra -Wunused-parameter -Wunused-variable
 CXXFLAGS = -std=c++0x -g -O0 $(WARNINGS) -MMD -MP -c -M
 LDFLAGS = -std=c++0x 
 
