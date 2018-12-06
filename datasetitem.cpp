@@ -1,5 +1,5 @@
 /* Default Constructor */
-DataSetItem::DataSetItem()
+void DataSetItem::DataSetItem()
 {
 	_label = 0;
 	_dim_maps = std::vector<std::map<int, int> > ;
@@ -7,7 +7,7 @@ DataSetItem::DataSetItem()
 
 /* Construct from values */
 
-DataSetItem::DataSetItem(int label, std::vector<std::map<int, int>> dim_maps)
+void DataSetItem::DataSetItem(int label, std::vector<std::map<int, int>> dim_maps)
 {
 	_label = label;
 	_dim_maps = dim_maps;
