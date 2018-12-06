@@ -1,3 +1,5 @@
+#include "datasetitem.h"
+
 /* Default Constructor */
 void DataSetItem::DataSetItem()
 {
