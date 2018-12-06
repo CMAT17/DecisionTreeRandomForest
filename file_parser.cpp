@@ -6,7 +6,7 @@
 #include <utility>
 
 #include "datasetitem.h"
-
+#include "file_parser.h"
 /**
  * Function parsing LibSVM-style textfiles
  */
@@ -18,13 +18,13 @@ std::vector<DataSetItem> file_parser(std::string filename)
 
 	if(data_file.is_open())
 	{
-		string line;
+		std::string line;
 
 		while(std::getline(data_file, line))
 		{
 			std::istringstream iss(line);
-			std::vector<std::string> line_record = ( (std::istream_iterator(iss)) ,
-													  std::istream_iterator());
+			std::vector<std::string> line_record = ( std::istream_iterator<std::string>{iss} ,
+													  std::istream_iterator<std::string>());
 			int label=(std::stoi(line_record[0]));
 			std::vector<std::map<int, int> > dim_maps;
 			for(auto it = std::next(line_record.begin()), it != line_record.end(), ++it)

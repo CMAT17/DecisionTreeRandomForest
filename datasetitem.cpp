@@ -4,7 +4,6 @@
 DataSetItem::DataSetItem()
 {
 	_label = 0;
-	_dim_maps = std::vector<std::map<int, int> > ;
 }
 
 /* Construct from values */
