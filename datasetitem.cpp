@@ -1,8 +1,4 @@
-#include <fstream>
-#include <string>
-#include <iterator>
-#include <algorithm>
-#include <sstream>
+#include "DataSetItem.h"
 
 
 /* Default Constructor */
@@ -20,14 +16,13 @@ DataSetItem::DataSetItem(int label, std::vector<std::map<int, int>> dim_maps)
 	_dim_maps = dim_maps;
 }
 
-/* Copy Constructor */ //Is this needed?
-
-
-/* Move Constructor */ //Is this needed?
-
-/* Destructor */
-
-DataSetItem::~DataSetItem()
+int DataSetItem::get_label()
 {
-	_dim_maps.clear();
+	return _label;
 }
+
+std::vector<std::map<int,int>> DataSetItem::get_dim_maps()
+{
+	return _dim_maps;
+}
+

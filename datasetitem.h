@@ -2,7 +2,6 @@
 #define DATASET_ITEM_H_
 
 #include <vector>
-#include <string>
 #include <map>
 
 class DataSetItem
@@ -10,9 +9,8 @@ class DataSetItem
 	public:
 		DataSetItem();
 		DataSetItem(int label, std::vector<std::map<int, int>> dim_maps);
-		~DataSetItem();
-
-
+		int get_label();
+		std::vector<std::map<key, value>>  get_dim_maps();
 	private:
 		int _label;
 		std::vector<std::map<int, int>> _dim_maps;
