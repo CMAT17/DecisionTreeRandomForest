@@ -23,8 +23,13 @@ std::vector<DataSetItem> file_parser(std::string filename)
 		while(std::getline(data_file, line))
 		{
 			std::istringstream iss(line);
-			std::vector<std::string> line_record = ( std::istream_iterator<std::string>{iss} ,
-													  std::istream_iterator<std::string>());
+			std::vector<std::string> line_record;
+			std::string token;
+			while (std::getline(iss, token, " "))
+			{
+				line_record.push_back(token);
+			}
+
 			int label=(std::stoi(line_record[0]));
 			std::vector<std::map<int, int> > dim_maps;
 			for(auto it = std::next(line_record.begin()), it != line_record.end(), ++it)
