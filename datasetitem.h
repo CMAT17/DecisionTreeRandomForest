@@ -10,7 +10,7 @@ class DataSetItem
 		DataSetItem();
 		DataSetItem(int label, std::vector<std::map<int, int>> dim_maps);
 		int get_label();
-		std::vector<std::map<key, value>>  get_dim_maps();
+		std::vector<std::map<int, int>>  get_dim_maps();
 	private:
 		int _label;
 		std::vector<std::map<int, int>> _dim_maps;
