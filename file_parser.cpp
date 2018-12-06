@@ -6,7 +6,6 @@
 #include <utility>
 
 #include "datasetitem.h"
-#include "file_parser.h"
 
 /**
  * Function parsing LibSVM-style textfiles
