@@ -25,7 +25,7 @@ std::vector<DataSetItem> file_parser(std::string filename)
 			std::istringstream iss(line);
 			std::vector<std::string> line_record;
 			std::string token;
-			while (std::getline(iss, token, " "))
+			while (std::getline(iss, token, ' '))
 			{
 				line_record.push_back(token);
 			}
@@ -36,7 +36,7 @@ std::vector<DataSetItem> file_parser(std::string filename)
 			{
 				std::string key, val;
 				std::map<int, int> temp;
-				std::istringstream iss2(it);
+				std::istringstream iss2(*it);
 				while(std::getline(std::getline(iss2,key,":") >> std::ws, val)){
 					temp[std::stoi(key)] = std::stoi(val);
 				}
