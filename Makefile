@@ -11,7 +11,7 @@ CXX = g++
 LD = g++
 
 WARNINGS = -pedantic -Wall -Werror -Wfatal-errors -Wextra -Wunused-parameter -Wunused-variable
-CXXFLAGS = -std=c++0x -g -O0 $(WARNINGS) -MMD -MP -c -M
+CXXFLAGS = -std=c++0x -g -O0 $(WARNINGS) -c
 LDFLAGS = -std=c++0x 
 
 all: $(TREE_EXE)
@@ -29,6 +29,6 @@ $(TREE_EXE): $(OBJS_SHARED) $(OBJS_TREE)
 	$(LD) $^ $(LDFLAGS) -o $@  
 
 clean:
-	rm -fr $(TREE_EXE) $(OBJS_SHARED) $(OBJS_TREE) 
+	rm -fr *.o
 
 .PHONY: all clean
