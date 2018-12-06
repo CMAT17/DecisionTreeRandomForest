@@ -37,13 +37,13 @@ std::vector<DataSetItem> file_parser(std::string filename)
 				std::string key, val;
 				std::map<int, int> temp;
 				std::istringstream iss2(*it);
-				while(std::getline(std::getline(iss2,key,":") >> std::ws, val)){
+				while(std::getline(std::getline(iss2,key,':') >> std::ws, val)){
 					temp[std::stoi(key)] = std::stoi(val);
 				}
 				dim_maps.push_back(temp);
 			}
 			DataSetItem new_datasetitem(label, dim_maps);
-			dataset_record.push_back(DataSetItem);
+			dataset_record.push_back(new_datasetitem);
 		}
 	}
 	return dataset_record;
