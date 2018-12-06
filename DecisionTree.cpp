@@ -5,10 +5,11 @@
 
 int main(int argc, char ** argv){
 	std::vector<DataSetItem> v;
-	v = file_parser(argv[0]);
+	v = file_parser(argv[1]);
 	for (auto it = v.begin(); it!= v.end(); ++it)
 	{
-		std::cout << it->get_label << it->get_dim_maps;	
+		std::cout << it->get_label()<<"\n" ;	
 	}
+    std::cout << argc;
 	return 0;
 }
