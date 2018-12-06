@@ -8,11 +8,11 @@ OBJS_TREE = DecisionTree.o
 OBJS_ENSEM = RandomForest.o
 
 CXX = g++
-CFLAGS = g++
+LD = g++
 
 WARNINGs = -pedantic -Wall -Werror -Wfatal-errors -Wextra -Wno-unused-parameter -Wno-unused-variable
-CXXFLAGS = -std=c++1y -stdlib=libc++ -g -O0 $(WARNINGS) -MMD -MP -c -M
-LDFLAGS = -std=c++1y -stdlib=libc++
+CXXFLAGS = -std=c++0x -g -O0 $(WARNINGS) -MMD -MP -c -M
+LDFLAGS = -std=c++0x 
 
 all: $(TREE_EXE)
 
@@ -23,6 +23,7 @@ file_parser.o: file_parser.cpp datasetitem.h file_parser.h
 	$(CXX) $(CXXFLAGS) $< -o $@
 
 DecisionTree.o: DecisionTree.cpp datasetitem.h file_parser.h
+	$(CXX) $(CXXFLAGS) $< -o $@
 
 $(TREE_EXE): $(OBJS_SHARED) $(OBJS_TREE)
 	$(LD) $^ $(LDFLAGS) -o $@  
