@@ -37,7 +37,7 @@ int main(int argc, char ** argv){
 		std::cout << y.first;
 		for(auto it = y.second.begin(); it != y.second.end(); ++it)
 		{
-			std::cout<< it;
+			std::cout<< *it;
 		}
 		std::cout <<"\n" 
 	}
