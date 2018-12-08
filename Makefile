@@ -29,6 +29,6 @@ $(TREE_EXE): $(OBJS_SHARED) $(OBJS_TREE)
 	$(LD) $^ $(LDFLAGS) -o $@  
 
 clean:
-	rm -fr *.o
+	rm -fr *.o DecisionTree
 
 .PHONY: all clean

@@ -1,4 +1,5 @@
 #include <iostream>
+#include <algorithm>
 
 #include "datasetitem.h"
 #include "file_parser.h"
@@ -21,7 +22,11 @@ int main(int argc, char ** argv){
 			/* code */
 			if(cat_vals.find(x.first) != cat_vals.end())
 			{
-				cat_vals[x.first].push_back(x.second);
+                if(std::find(cat_vals[x.first].begin(),cat_vals[x.first].end(),x.second)== cat_vals[x.first].end())
+                {
+                    //Specific value for category not found, append it into the vector
+                    cat_vals[x.first].push_back(x.second);
+                }
 			}
 			else
 			{
@@ -39,7 +44,7 @@ int main(int argc, char ** argv){
 		{
 			std::cout<< *it;
 		}
-		std::cout <<"\n" 
+		std::cout <<"\n"; 
 	}
 	/* Evaluate all splits with gini-index */
 	
