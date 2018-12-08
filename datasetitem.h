@@ -8,12 +8,12 @@ class DataSetItem
 {
 	public:
 		DataSetItem();
-		DataSetItem(int label, std::vector<std::map<int, int>> dim_maps);
+		DataSetItem(int label, std::map<int, int> dim_maps);
 		int get_label();
-		std::vector<std::map<int, int>>  get_dim_maps();
+		std::map<int, int>  get_dim_maps();
 	private:
 		int _label;
-		std::vector<std::map<int, int>> _dim_maps;
+		std::map<int, int> _dim_map;
 };
 
 #endif

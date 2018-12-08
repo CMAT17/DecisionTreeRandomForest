@@ -31,16 +31,14 @@ std::vector<DataSetItem> file_parser(std::string filename)
 			}
 
 			int label=(std::stoi(line_record[0]));
-			std::vector<std::map<int, int> > dim_maps;
+			std::map<int, int> dim_maps;
 			for(auto it = std::next(line_record.begin()); it != line_record.end(); ++it)
 			{
 				std::string key, val;
-				std::map<int, int> temp;
 				std::istringstream iss2(*it);
 				while(std::getline(std::getline(iss2,key,':') >> std::ws, val)){
-					temp[std::stoi(key)] = std::stoi(val);
+					dim_maps[std::stoi(key)] = std::stoi(val);
 				}
-				dim_maps.push_back(temp);
 			}
 			DataSetItem new_datasetitem(label, dim_maps);
 			dataset_record.push_back(new_datasetitem);
