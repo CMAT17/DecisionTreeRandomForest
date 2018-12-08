@@ -25,7 +25,8 @@ int main(int argc, char ** argv){
 			}
 			else
 			{
-				std::vector<int> temp = x.second;
+				std::vector<int> temp;
+				temp.push_back(x.second);
 				cat_vals[x.first] = temp;
 			}
 		}
