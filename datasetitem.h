@@ -13,7 +13,7 @@ class DataSetItem
 		std::map<int, int>  get_dim_maps();
 	private:
 		int _label;
-		std::map<int, int> _dim_map;
+		std::map<int, int> _dim_maps;
 };
 
 #endif

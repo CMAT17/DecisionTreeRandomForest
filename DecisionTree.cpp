@@ -2,7 +2,7 @@
 
 #include "datasetitem.h"
 #include "file_parser.h"
-#include "decision_tree.h"
+//#include "decision_tree.h"
 
 
 int main(int argc, char ** argv){
@@ -13,15 +13,15 @@ int main(int argc, char ** argv){
 	
 	/* obtain the values possilbe for each category */
 	std::map<int, std::vector<int> > cat_vals;
-	for(auto it1 = training_data.begin(); it!=training_data.end();++it)
+	for(auto it1 = training_data.begin(); it1!=training_data.end();++it1)
 	{
-		std::map<int, int> context_dim_maps;
+		std::map<int, int> context_dim_maps = it1->get_dim_maps();
 		for (auto const& x: context_dim_maps)
 		{
 			/* code */
 			if(cat_vals.find(x.first) != cat_vals.end())
 			{
-				cat_vals[x.first].push_back(x.second)
+				cat_vals[x.first].push_back(x.second);
 			}
 			else
 			{
