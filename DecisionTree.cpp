@@ -61,7 +61,7 @@ int main(int argc, char ** argv){
 	{
 		for (auto it = x.second.begin(); it!= x.second.end(); ++it)
 		{
-			std::cout << gini_index(x.first, *it) << "\n";
+			std::cout << gini_index(x.first, *it, training_data) << "\n";
 		}
 	}
 	//test 
@@ -90,7 +90,7 @@ float gini_index(int cat, int val, std::vector<DataSetItem> training_data)
 {
 	//Number of occurences of any label for a particualar (cat:val) key,value pair 
 	std::map<int, int> num_occ_label;
-
+    int total_items = 0;
 	for(auto it = training_data.begin(); it!= training_data.end(); ++it)
 	{
 		DataSetItem temp_item = *it;
@@ -108,9 +108,9 @@ float gini_index(int cat, int val, std::vector<DataSetItem> training_data)
 			{
 				num_occ_label[temp_label]=1;
 			}
+            total_items++;
 		}
 	}
-	int total_items = training_data.size();
 	
     float temp_val;
 	float temp_gini_index = 1.0;
@@ -129,7 +129,7 @@ void partition(Question qsplit, std::vector<DataSetItem> input_set, std::vector<
 	std::map<int, int> item_map;
 	for(auto it = input_set.begin(); it != input_set.end(); ++it)
 	{
-		item_map = it->get_dim_maps;
+		item_map = it->get_dim_maps();
 		if (item_map.find(category)== item_map.end())
 		{
 			std::cout<< "MAP DOES NOT HAVE CATEGORY";
