@@ -57,11 +57,11 @@ int main(int argc, char ** argv){
 	}
 
 	//test gini_index
-	for(auto const & x: cat_vals)
+	for(auto const& x: cat_vals)
 	{
-		for (auto it = x.second.begin(); it != x.second.end(); ++it)
+		for (auto it = x.second.begin(); it!= x.second.end(); ++it)
 		{
-			std::cout << gini_index(x.first, *it) <<"\n";
+			std::cout << gini_index(x.first, *it) << "\n";
 		}
 	}
 	//test 
@@ -83,7 +83,6 @@ int main(int argc, char ** argv){
 	 */
 	
 	std::vector<std::vector<int>> confusion_mtx(all_labels.size(), std::vector<int>(all_labels.size(),0));
-
 	return 0;
 }
 
@@ -130,7 +129,7 @@ void partition(Question qsplit, std::vector<DataSetItem> input_set, std::vector<
 	std::map<int, int> item_map;
 	for(auto it = input_set.begin(); it != input_set.end(); ++it)
 	{
-		item_map = it->get_dim_maps();
+		item_map = it->get_dim_maps;
 		if (item_map.find(category)== item_map.end())
 		{
 			std::cout<< "MAP DOES NOT HAVE CATEGORY";
