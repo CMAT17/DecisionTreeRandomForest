@@ -5,7 +5,7 @@
 
 #include "datasetitem.h"
 #include "file_parser.h"
-#include "question.h "
+#include "question.h"
 #include "decision_node.h"
 
 int gini_index(int split_cat, int split_val, std::vector<DataSetItem> training_data);
@@ -27,7 +27,7 @@ int main(int argc, char ** argv){
 	std::map<int, std::vector<int> > cat_vals;
 	/* obtain all possible labels */
 	std::vector<int> all_labels;
-
+    int temp_label;
 	for(auto it1 = training_data.begin(); it1!=training_data.end();++it1)
 	{
 		temp_label = it1->get_label();
@@ -107,10 +107,12 @@ int gini_index(int cat, int val, std::vector<DataSetItem> training_data)
 	}
 	int total_items = training_data.size();
 	
+    float temp_val;
 	float temp_gini_index = 1.0;
 	for(auto const& x: num_occ_label)
 	{
-		temp_gini_index-= pow((float(x.second)/float(total_items),2.0);
+        temp_val= float(x.second)/float(total_items);
+		temp_gini_index-= pow(temp_val,2.0);
 	}
 	return temp_gini_index;
 }

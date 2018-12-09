@@ -13,5 +13,5 @@ bool DecisionNode::eval_question(std::pair<int,int> example)
 
 int DecisionNode::get_category()
 {
-	return _category;
+	return _question.get_category();
 }
