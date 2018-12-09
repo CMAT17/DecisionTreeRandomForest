@@ -6,6 +6,7 @@
 class Question
 {
 	public:
+		Question();	
 		Question(int category, int value);
 		/* Check if value matches the question's value */
 		int get_category();

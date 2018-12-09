@@ -1,5 +1,11 @@
 #include "question.h"
 
+Question::Question()
+{
+	_category = -1;
+	_value = -1;
+}
+
 Question::Question(int category, int value)
 {
 	_category = category;
