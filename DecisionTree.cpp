@@ -10,7 +10,7 @@
 
 float gini_index(int split_cat, int split_val, std::vector<DataSetItem> training_data);
 
-void partition( Question qsplit, std::vector<DataSetItem> input_set, std::vector<DataSetItem> & true_branch_set, std::vector<DataSetItem> false_branch_set);
+void partition( Question qsplit, std::vector<DataSetItem> input_set, std::vector<DataSetItem> & true_branch_set, std::vector<DataSetItem> & false_branch_set);
 
 //std::pair<float, Question> find_best_split(std::vector<DataSetItem> input_set, std::map<int, std::vector<int>> cat_vals);
 
@@ -69,7 +69,7 @@ int main(int argc, char ** argv){
 	std::vector<DataSetItem> true_branch;
 	std::vector<DataSetItem> false_branch;
 	Question testq(1,1);
-	partition(testq, true_branch, false_branch)	
+	partition(testq, training_data, true_branch, false_branch);
 
 	for (auto it = true_branch.begin(); it != true_branch.end(); ++it)
 	{
@@ -80,7 +80,7 @@ int main(int argc, char ** argv){
 	{
 		it->print_dataset_item();
 	}
-
+    std::cout << false_branch.size() + true_branch.size() << " " <<training_data.size();
 	/* Build Decision Tree using GINI-index  */
 			
 
