@@ -64,7 +64,22 @@ int main(int argc, char ** argv){
 			std::cout << gini_index(x.first, *it, training_data) << "\n";
 		}
 	}
-	//test 
+	//test partition
+
+	std::vector<DataSetItem> true_branch;
+	std::vector<DataSetItem> false_branch;
+	Question testq(1,1);
+	partition(testq, true_branch, false_branch)	
+
+	for (auto it = true_branch.begin(); it != true_branch.end(); ++it)
+	{
+		it->print_dataset_item();
+	}
+
+	for (auto it = false_branch.begin(); it!= false_branch.end(); ++it)
+	{
+		it->print_dataset_item();
+	}
 
 	/* Build Decision Tree using GINI-index  */
 			
@@ -122,7 +137,7 @@ float gini_index(int cat, int val, std::vector<DataSetItem> training_data)
 	return temp_gini_index;
 }
 
-void partition(Question qsplit, std::vector<DataSetItem> input_set, std::vector<DataSetItem> & true_branch_set, std::vector<DataSetItem> false_branch_set)
+void partition(Question qsplit, std::vector<DataSetItem> input_set, std::vector<DataSetItem> & true_branch_set, std::vector<DataSetItem> & false_branch_set)
 {
 	int category = qsplit.get_category();
 	std::pair<int, int> item_pair;

@@ -1,4 +1,5 @@
 #include "datasetitem.h"
+#include <iostream>
 
 /* Default Constructor */
 DataSetItem::DataSetItem()
@@ -24,3 +25,12 @@ std::map<int,int> DataSetItem::get_dim_maps()
 	return _dim_maps;
 }
 
+void DataSetItem::print_dataset_item()
+{
+	std::cout << "label: " <<_label <<"\n";
+	for(auto const & x: _dim_maps)
+	{
+		std::cout << x.first <<":" <<x.second << " ";
+	}
+	std::cout << "\n";
+}
