@@ -3,7 +3,7 @@
 TREE_EXE = DecisionTree
 ENSEM_EXE = RandomForest
 
-OBJS_SHARED = datasetitem.o file_parser.o
+OBJS_SHARED = datasetitem.o file_parser.o question.o decision_node.o decision_node.o
 OBJS_TREE = DecisionTree.o
 OBJS_ENSEM = RandomForest.o
 
@@ -15,6 +15,12 @@ CXXFLAGS = -std=c++0x -g -O0 $(WARNINGS) -c
 LDFLAGS = -std=c++0x 
 
 all: $(TREE_EXE)
+
+decision_node.o : decision_node.cpp decision_node.h
+	$(CXX) $(CXXFLAGS) $< -o $@
+
+question.o: question.cpp question.h
+	$(CXX) $(CXXFLAGS) $< -o $@ 
 
 datasetitem.o: datasetitem.cpp datasetitem.h
 	$(CXX) $(CXXFLAGS) $< -o $@ 
