@@ -8,7 +8,7 @@
 #include "question.h"
 #include "decision_node.h"
 
-int gini_index(int split_cat, int split_val, std::vector<DataSetItem> training_data);
+float gini_index(int split_cat, int split_val, std::vector<DataSetItem> training_data);
 
 void partition( Question qsplit, std::vector<DataSetItem> input_set, std::vector<DataSetItem> & true_branch_set, std::vector<DataSetItem> false_branch_set);
 
@@ -57,7 +57,13 @@ int main(int argc, char ** argv){
 	}
 
 	//test gini_index
-
+	for(auto const & x: cat_vals)
+	{
+		for (auto it = x.second.begin(); it != x.second.end(); ++it)
+		{
+			std::cout << gini_index(x.first, *it) <<"\n";
+		}
+	}
 	//test 
 
 	/* Build Decision Tree using GINI-index  */
@@ -81,7 +87,7 @@ int main(int argc, char ** argv){
 	return 0;
 }
 
-int gini_index(int cat, int val, std::vector<DataSetItem> training_data)
+float gini_index(int cat, int val, std::vector<DataSetItem> training_data)
 {
 	//Number of occurences of any label for a particualar (cat:val) key,value pair 
 	std::map<int, int> num_occ_label;
