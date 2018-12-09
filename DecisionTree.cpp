@@ -124,7 +124,7 @@ void partition(Question qsplit, std::vector<DataSetItem> input_set, std::vector<
 	std::map<int, int> item_map;
 	for(auto it = input_set.begin(); it != input_set.end(); ++it)
 	{
-		item_map = it->get_dim_maps;
+		item_map = it->get_dim_maps();
 		if (item_map.find(category)== item_map.end())
 		{
 			std::cout<< "MAP DOES NOT HAVE CATEGORY";

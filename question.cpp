@@ -28,3 +28,8 @@ bool Question::match(std::pair<int,int> example)
 		return example.second == _value;
 	}
 }
+
+int Question::get_category()
+{
+    return _category;
+}
