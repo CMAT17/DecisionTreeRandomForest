@@ -1,4 +1,4 @@
-#include "d_tree"
+#include "d_tree.h"
 
 d_tree::d_tree(DecisionNode* root)
 {
