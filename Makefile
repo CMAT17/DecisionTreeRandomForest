@@ -11,7 +11,7 @@ CXX = g++
 LD = g++
 
 WARNINGS = -pedantic -Wall -Werror -Wfatal-errors -Wextra -Wunused-parameter -Wunused-variable
-CXXFLAGS = -std=c++0x -g -O0 $(WARNINGS)  -c
+CXXFLAGS = -std=c++0x -g -O0 $(WARNINGS)  -c -ggdb3
 LDFLAGS = -std=c++0x 
 
 all: $(TREE_EXE)
