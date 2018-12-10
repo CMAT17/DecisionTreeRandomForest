@@ -62,14 +62,22 @@ int main(int argc, char ** argv){
 	test_data = file_parser(argv[2]);
 
 	/* Classify test set */
-		
+	
+	std::vector<std::vector<int>> confusion_mtx = decision_tree.classify(test_data);
 
 	/* Confusion matrix */
 	/**
 	 * First index determines row (which label it was actually). Second index determines col (which one it was predicted)
 	 */
-	
-	std::vector<std::vector<int>> confusion_mtx(all_labels.size(), std::vector<int>(all_labels.size(),0));
+	for(auto it1 = confusion_mtx.begin(); it1 != confusion_mtx.end(); ++it1)
+	{
+		for(auto it2 = it1->begin(); it2 != it1->begin(); ++it2)
+		{
+			std::cout << *it2 << " ";
+		}
+		std::cout << "\n";
+	}
+
 	return 0;
 }
 
