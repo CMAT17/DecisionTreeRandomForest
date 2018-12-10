@@ -4,7 +4,7 @@
 
 d_tree::d_tree(std::vector<DataSetItem> input_set, std::map<int, std::vector<int>> cat_vals, std::vector<int> all_labels)
 {
-	_all_labels = all_labels
+	_all_labels = all_labels;
 	root = _build_tree(input_set, cat_vals);
 }
 
@@ -216,9 +216,9 @@ void d_tree::_print_tree(DecisionNode* root)
 	}
 }
 
-std::vector<std::vector<int>> classify(std::vector<DataSetItem> test_data)
+std::vector<std::vector<int>> d_tree::classify(std::vector<DataSetItem> test_data)
 {
-	std::vector<std::vector<int>> confusion_mtx(_all_labels.size(),std::vector<int> (_all_labels.size(),0));
+	std::vector<std::vector<int>> confusion_mtx(this->_all_labels.size(),std::vector<int> (this->_all_labels.size(),0));
 	for(auto it = test_data.begin(); it!= test_data.end(); ++it)
 	{
 		DecisionNode * subroot = root;
@@ -227,18 +227,18 @@ std::vector<std::vector<int>> classify(std::vector<DataSetItem> test_data)
 			if(subroot->get_leaf())
 			{
 				int prediction = subroot->get_prediction();
-				int label = *it->get_label();
+				int label = it->get_label();
 				//Labels start at 1, indexing starts at 0
-				confusion[label-1][prediction-1] +=1;
+				confusion_mtx[label-1][prediction-1]++;
 				break;
 			}
 			else
 			{
-				dim_map = it->get_dim_maps();
-				cat = subroot->get_category();
+				std::map<int,int> dim_map = it->get_dim_maps();
+				int cat = subroot->get_category();
 
 				std::pair<int,int> eval_pair(cat,dim_map[cat]);
-				q_result = subroot->eval_question(eval_pair);
+				bool q_result = subroot->eval_question(eval_pair);
 
 				if(q_result)
 				{
