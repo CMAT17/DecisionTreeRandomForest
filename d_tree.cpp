@@ -188,5 +188,16 @@ void d_tree::_blow_up_tree(DecisionNode* root)
 
 void d_tree::_print_tree(DecisionNode* root)
 {
-	std::cout<<root->get_category()<<"\n";
+	if(root)
+	{
+		if(true_branch)
+		{
+			_print_tree(true_branch);
+		}
+		if(false_branch)
+		{
+			_print_tree(false_branch);
+		}
+		std::cout << root->_question.get_category() << ": " <<root->_question.get_value() <<"\n";
+	}
 }
