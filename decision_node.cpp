@@ -27,6 +27,12 @@ int DecisionNode::get_category()
 
 DecisionNode::~DecisionNode()
 {
-	delete true_branch;
-	delete false_branch;	
+    if(true_branch!=NULL)
+    {
+	    delete true_branch;
+	}
+    if(false_branch!=NULL)
+    {
+        delete false_branch;
+    }	
 }

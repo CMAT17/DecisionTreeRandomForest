@@ -2,7 +2,7 @@
 
 d_tree::d_tree(DecisionNode* root)
 {
-	this.root = root;
+	this->root = root;
 }
 
 d_tree::~d_tree()

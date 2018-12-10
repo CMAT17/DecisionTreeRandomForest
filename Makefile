@@ -3,7 +3,7 @@
 TREE_EXE = DecisionTree
 ENSEM_EXE = RandomForest
 
-OBJS_SHARED = datasetitem.o file_parser.o question.o decision_node.o decision_node.o
+OBJS_SHARED = datasetitem.o file_parser.o question.o decision_node.o decision_node.o d_tree.o
 OBJS_TREE = DecisionTree.o
 OBJS_ENSEM = RandomForest.o
 
@@ -11,7 +11,7 @@ CXX = g++
 LD = g++
 
 WARNINGS = -pedantic -Wall -Werror -Wfatal-errors -Wextra -Wunused-parameter -Wunused-variable
-CXXFLAGS = -std=c++0x -g -O0 $(WARNINGS) -c
+CXXFLAGS = -std=c++0x -g -O0 $(WARNINGS)  -c
 LDFLAGS = -std=c++0x 
 
 all: $(TREE_EXE)
