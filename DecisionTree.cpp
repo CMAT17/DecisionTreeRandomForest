@@ -135,7 +135,7 @@ float gini_index(int cat, int val, std::vector<DataSetItem> training_data)
 		}
 		else
 		{
-			if(num_occ_other_label.find(temp_label) != num_occ_other_label.end())
+			if(num_occ_other_label.find(temp_label) == num_occ_other_label.end())
 			{
 				num_occ_other_label[temp_label] = 0;
 			}
@@ -156,8 +156,8 @@ float gini_index(int cat, int val, std::vector<DataSetItem> training_data)
 	}
 
 	float temp_val2;
-	float temp_gini_index_f = 1.0
-	for(auto const& x: num_occ_label)
+	float temp_gini_index_f = 1.0;
+	for(auto const& x: num_occ_other_label)
 	{
         temp_val2= float(x.second)/float(total_items_f);
 		temp_gini_index_f-= pow(temp_val2,2.0);
