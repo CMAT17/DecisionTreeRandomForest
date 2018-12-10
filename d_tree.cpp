@@ -190,13 +190,13 @@ void d_tree::_print_tree(DecisionNode* root)
 {
 	if(root)
 	{
-		if(true_branch)
+		if(root->true_branch)
 		{
-			_print_tree(true_branch);
+			_print_tree(root->true_branch);
 		}
-		if(false_branch)
+		if(root->false_branch)
 		{
-			_print_tree(false_branch);
+			_print_tree(root->false_branch);
 		}
 		std::cout << root->_question.get_category() << ": " <<root->_question.get_value() <<"\n";
 	}
