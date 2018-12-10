@@ -11,7 +11,7 @@ d_tree::~d_tree()
 	_blow_up_tree(root);
 }
 
-d_tree::print_tree(void)
+void d_tree::print_tree(void)
 {
 	_print_tree(root);
 }
@@ -168,8 +168,6 @@ Question d_tree::_find_best_split(std::vector<DataSetItem> input_set, std::map<i
 
 			gini_val = _gini_index(x.first, *it, input_set);
 
-			std::cout <<gini_val << "\n";
-
 			if (gini_val <= best_gini)
 			{
 				best_gini = gini_val;
@@ -184,9 +182,7 @@ void d_tree::_blow_up_tree(DecisionNode* root)
 {
 	if(root)
 	{
-		_blow_up_tree(root->true_branch);
-		_blow_up_tree(root->false_branch);
-		delete root;
+        delete root;
 	}
 }
 

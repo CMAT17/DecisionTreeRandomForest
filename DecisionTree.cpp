@@ -57,7 +57,7 @@ int main(int argc, char ** argv){
 	/* Build Decision Tree using GINI-index  */
 	
     d_tree decision_tree(training_data,cat_vals);
-    std::cout << decision_tree.print_tree();
+    decision_tree.print_tree();
 	/* Populate test data vector */
 	//std::vector<DataSetItem> test_data;
 	//test_data = file_parser(argv[2]);
