@@ -8,10 +8,13 @@
 class d_tree
 {
 	public:
-		d_tree(std::vector<DataSetItem> input_set, std::map<int, std::vector<int>> cat_vals);
+		d_tree(std::vector<DataSetItem> input_set, std::map<int, std::vector<int>> cat_vals, , std::vector<int> all_labels);
 		void print_tree(void);
+		//output k*k confusion matrix
+		std::vector<std::vector<int>> classify(std::vector<DataSetItem> test_data);
 		~d_tree();
 	private:
+		std::vector<int> _all_labels;
 		DecisionNode* root;
 		DecisionNode* _build_tree(std::vector<DataSetItem> input_set, std::map<int, std::vector<int>> cat_vals);
 		Question _find_best_split(std::vector<DataSetItem> input_set, std::map<int, std::vector<int>> cat_vals);

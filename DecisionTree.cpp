@@ -13,7 +13,7 @@
 
 
 int main(int argc, char ** argv){
-    if (argc <1)
+    if (argc<2)
     {
     	return -1;
     }
@@ -56,14 +56,13 @@ int main(int argc, char ** argv){
 
 	/* Build Decision Tree using GINI-index  */
 	
-    d_tree decision_tree(training_data,cat_vals);
-    decision_tree.print_tree();
+    d_tree decision_tree(training_data,cat_vals, all_labels);
 	/* Populate test data vector */
-	//std::vector<DataSetItem> test_data;
-	//test_data = file_parser(argv[2]);
+	std::vector<DataSetItem> test_data;
+	test_data = file_parser(argv[2]);
 
 	/* Classify test set */
-	
+		
 
 	/* Confusion matrix */
 	/**

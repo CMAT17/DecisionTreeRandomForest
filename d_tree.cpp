@@ -1,8 +1,10 @@
 #include "d_tree.h"
 #include <iostream>
+#include <utility>
 
-d_tree::d_tree(std::vector<DataSetItem> input_set, std::map<int, std::vector<int>> cat_vals)
+d_tree::d_tree(std::vector<DataSetItem> input_set, std::map<int, std::vector<int>> cat_vals, std::vector<int> all_labels)
 {
+	_all_labels = all_labels
 	root = _build_tree(input_set, cat_vals);
 }
 
@@ -21,8 +23,20 @@ DecisionNode* d_tree::_build_tree(std::vector<DataSetItem> input_set, std::map<i
 	Question best_split = _find_best_split(input_set, cat_vals);
 	int cat_split = best_split.get_category();
 	if(cat_split==-1)
-	{
-		DecisionNode* leaf = new DecisionNode(best_split,true);
+	{	
+		std::map<int, int> counts;
+		int label;
+		for(auto it = input_set.begin(); it != input_set.end(); ++it)
+		{
+			label = it->get_label();
+			if(counts.find(label) == counts.end())
+			{
+				//Not found
+				counts[label] = 0;
+			}
+			counts[label]++;
+		}
+		DecisionNode* leaf = new DecisionNode(best_split,true,counts);
 		return leaf; //Leaf node
 	}
 	//modify the vectors to split on the best_split 
@@ -200,4 +214,42 @@ void d_tree::_print_tree(DecisionNode* root)
 		}
 		std::cout << root->_question.get_category() << ": " <<root->_question.get_value() <<"\n";
 	}
+}
+
+std::vector<std::vector<int>> classify(std::vector<DataSetItem> test_data)
+{
+	std::vector<std::vector<int>> confusion_mtx(_all_labels.size(),std::vector<int> (_all_labels.size(),0));
+	for(auto it = test_data.begin(); it!= test_data.end(); ++it)
+	{
+		DecisionNode * subroot = root;
+		while(subroot)
+		{
+			if(subroot->get_leaf())
+			{
+				int prediction = subroot->get_prediction();
+				int label = *it->get_label();
+				//Labels start at 1, indexing starts at 0
+				confusion[label-1][prediction-1] +=1;
+				break;
+			}
+			else
+			{
+				dim_map = it->get_dim_maps();
+				cat = subroot->get_category();
+
+				std::pair<int,int> eval_pair(cat,dim_map[cat]);
+				q_result = subroot->eval_question(eval_pair);
+
+				if(q_result)
+				{
+					subroot = subroot->true_branch;
+				} 
+				else
+				{
+					subroot = subroot->false_branch;
+				}
+			}
+		}
+	}
+	return confusion_mtx;
 }
