@@ -33,3 +33,8 @@ int Question::get_category()
 {
     return _category;
 }
+
+int Question::get_value()
+{
+	return _value;
+}

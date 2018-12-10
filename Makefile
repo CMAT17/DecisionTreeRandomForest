@@ -16,6 +16,9 @@ LDFLAGS = -std=c++0x
 
 all: $(TREE_EXE)
 
+d_tree.o: d_tree.cpp d_tree.h
+	$(CXX) $(CXXFLAGS) $< -o $@
+
 decision_node.o : decision_node.cpp decision_node.h
 	$(CXX) $(CXXFLAGS) $< -o $@
 

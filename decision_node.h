@@ -10,11 +10,13 @@ class DecisionNode
 {
 	public:
 		DecisionNode(Question new_question,bool leaf);
+		DecisionNode(Question new_question,DecisionNode* new_t_branch, Decision* new_f_branch);
         int get_category();
 		bool eval_question(std::pair<int,int> example);
-		DecisionNode * true_branch;
-		DecisionNode * false_branch;
+		DecisionNode* true_branch;
+		DecisionNode* false_branch;
         Question _question;
+        ~DecisionNode();
 	private:
 		bool _leaf;
 		std::map<int, int> counts; //tracks which counts of labels at leaf node -> choose majority, random for tiebreak

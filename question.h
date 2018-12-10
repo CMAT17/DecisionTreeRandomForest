@@ -10,6 +10,7 @@ class Question
 		Question(int category, int value);
 		/* Check if value matches the question's value */
 		int get_category();
+		int get_value();
 		bool match(std::pair<int,int> example);
 		~Question();
 	private:

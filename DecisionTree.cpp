@@ -7,15 +7,15 @@
 #include "file_parser.h"
 #include "question.h"
 #include "decision_node.h"
+#include "d_tree.h"
 
 float gini_index(int split_cat, int split_val, std::vector<DataSetItem> training_data);
 
 void partition( Question qsplit, std::vector<DataSetItem> input_set, std::vector<DataSetItem> & true_branch_set, std::vector<DataSetItem> & false_branch_set);
 
-std::pair<float, Question> find_best_split(std::vector<DataSetItem> input_set, std::map<int, std::vector<int>> cat_vals);
+Question find_best_split(std::vector<DataSetItem> input_set, std::map<int, std::vector<int>> cat_vals);
 
-//DecisionNode build_tree();
-
+DecisionNode* build_tree(std::vector<DataSetItem> input_set, std::map<int, std::vector<int>> cat_vals);
 
 int main(int argc, char ** argv){
     std::cout << argc;
@@ -83,11 +83,11 @@ int main(int argc, char ** argv){
     std::cout << false_branch.size() + true_branch.size() << " " <<training_data.size();
 	
 	//test find_best_split
-    std::pair<float, Question> check = find_best_split(training_data, cat_vals);
+    Question check = find_best_split(training_data, cat_vals);
 
 	/* Build Decision Tree using GINI-index  */
-			
-
+	
+    d_tree decision_tree = new d_tree(build_tree(training_data,cat_vals));
 
 	/* Populate test data vector */
 	//std::vector<DataSetItem> test_data;
@@ -194,7 +194,7 @@ void partition(Question qsplit, std::vector<DataSetItem> input_set, std::vector<
 	}
 }
 
-std::pair<float, Question> find_best_split(std::vector<DataSetItem> input_set, std::map<int, std::vector<int>> cat_vals)
+Question find_best_split(std::vector<DataSetItem> input_set, std::map<int, std::vector<int>> cat_vals)
 {
 	float best_gini = 1.0;
 	float gini_val;
@@ -229,3 +229,43 @@ std::pair<float, Question> find_best_split(std::vector<DataSetItem> input_set, s
 	return std::pair<float,Question> (gini_val, best_question);	
 }
 
+DecisionNode* build_tree(std::vector<DataSetItem> input_set, std::map<int, std::vector<int>> cat_vals)
+{
+	Question best_split = find_best_split(input_set, cat_vals);
+	int cat_split = best_split.get_category();
+	if(cat_split==-1)
+	{
+		DecisionNode* leaf = new DecisionNode(Question,true);
+		return leaf; //Leaf node
+	}
+	//modify the vectors to split on the best_split 
+	std::vector<DataSetItem> true_branch_vec;
+	std::vector<DataSetItem> false_branch_vec;
+
+	partition(best_split, input_set, true_branch_vec,false_branch_vec);
+
+	//modify the category-values map to reflect the splittable attributes in the true branch
+	//remove the category
+	std::map<int, std::vector<int>> cat_vals_true = cat_vals;
+	cat_vals_true.erase(cat_split);
+
+	//modify the category-values map to reflect the splittable attributes int he false branch
+	//remove the value in the category
+	std::map<int, std::vector<int>> cat_vals_false;
+	for(auto it = cat_vals_false[cat_split].begin(); it != cat_vals_false[cat_split].end(); ++it)
+	{
+		if(*it==best_split.get_value())
+		{
+			cat_vals_false[cat_split].erase(it--); //it passed into erase, decremented, then erase executes
+		}
+	}
+
+
+	//Recursively build the tree
+	DecisionNode* true_branch = build_tree(true_branch_vec, cat_vals_true);
+	DecisionNode* false_branch = build_tree(false_branch_vec, cat_vals_false);
+
+	DecisionNode* sub_root = new DecisionNode(best_split,true_branch,false_branch);
+
+	return sub_root;
+}
