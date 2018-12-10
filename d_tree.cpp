@@ -175,7 +175,7 @@ Question d_tree::_find_best_split(std::vector<DataSetItem> input_set, std::map<i
 			}
 		}
 	}
-	return Question(best_question);	
+	return best_question;	
 }
 
 void d_tree::_blow_up_tree(DecisionNode* root)

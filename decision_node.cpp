@@ -4,7 +4,8 @@ DecisionNode::DecisionNode(Question new_question, bool leaf = false)
 {
 	_leaf = leaf;
 	_question = new_question;
-	true_branch, false_branch = NULL;
+	true_branch = NULL; 
+	false_branch = NULL;
 }
 
 DecisionNode::DecisionNode(Question new_question,DecisionNode* new_t_branch, DecisionNode* new_f_branch)
@@ -27,11 +28,11 @@ int DecisionNode::get_category()
 
 DecisionNode::~DecisionNode()
 {
-    if(true_branch!=NULL)
+    if(true_branch)
     {
 	    delete true_branch;
 	}
-    if(false_branch!=NULL)
+    if(false_branch)
     {
         delete false_branch;
     }	
