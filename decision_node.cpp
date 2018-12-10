@@ -7,7 +7,7 @@ DecisionNode::DecisionNode(Question new_question, bool leaf = false)
 	true_branch, false_branch = NULL;
 }
 
-DecisionNode::DecisionNode(Question new_question,DecisionNode* new_t_branch, Decision* new_f_branch)
+DecisionNode::DecisionNode(Question new_question,DecisionNode* new_t_branch, DecisionNode* new_f_branch)
 {
 	_leaf = false;
 	_question = new_question;

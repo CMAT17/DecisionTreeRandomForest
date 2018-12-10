@@ -87,8 +87,8 @@ int main(int argc, char ** argv){
 
 	/* Build Decision Tree using GINI-index  */
 	
-    d_tree decision_tree = new d_tree(build_tree(training_data,cat_vals));
-
+    d_tree* decision_tree = new d_tree(build_tree(training_data,cat_vals));
+    std::cout << decision_tree->root->get_category();
 	/* Populate test data vector */
 	//std::vector<DataSetItem> test_data;
 	//test_data = file_parser(argv[2]);
@@ -226,7 +226,7 @@ Question find_best_split(std::vector<DataSetItem> input_set, std::map<int, std::
 			}
 		}
 	}
-	return std::pair<float,Question> (gini_val, best_question);	
+	return Question(best_question);	
 }
 
 DecisionNode* build_tree(std::vector<DataSetItem> input_set, std::map<int, std::vector<int>> cat_vals)
@@ -235,7 +235,7 @@ DecisionNode* build_tree(std::vector<DataSetItem> input_set, std::map<int, std::
 	int cat_split = best_split.get_category();
 	if(cat_split==-1)
 	{
-		DecisionNode* leaf = new DecisionNode(Question,true);
+		DecisionNode* leaf = new DecisionNode(best_split,true);
 		return leaf; //Leaf node
 	}
 	//modify the vectors to split on the best_split 
