@@ -3,7 +3,7 @@
 
 d_tree::d_tree(std::vector<DataSetItem> input_set, std::map<int, std::vector<int>> cat_vals)
 {
-	root = _build_tree(std::vector<DataSetItem> input_set, std::map<int, std::vector<int>> cat_vals);
+	root = _build_tree(input_set, cat_vals);
 }
 
 d_tree::~d_tree()

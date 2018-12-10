@@ -13,7 +13,10 @@
 
 
 int main(int argc, char ** argv){
-    std::cout << argc;
+    if (argc <1)
+    {
+    	return -1;
+    }
 	/* Populate training data vector */
 	std::vector<DataSetItem> training_data;
 	training_data = file_parser(argv[1]);		
