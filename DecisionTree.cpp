@@ -69,13 +69,13 @@ int main(int argc, char ** argv){
 	/**
 	 * First index determines row (which label it was actually). Second index determines col (which one it was predicted)
 	 */
-	for(auto it1 = confusion_mtx.begin(); it1 != confusion_mtx.end(); ++it1)
+	for(auto const & inner: confusion_mtx)
 	{
-		for(auto it2 = it1->begin(); it2 != it1->begin(); ++it2)
+		for(auto const & item: inner)
 		{
-			std::cout << *it2 << " ";
+			std::cout << item << " ";
 		}
-		std::cout << "\n";
+		std::cout << endl;
 	}
 
 	return 0;
