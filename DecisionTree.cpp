@@ -81,6 +81,9 @@ int main(int argc, char ** argv){
 		it->print_dataset_item();
 	}
     std::cout << false_branch.size() + true_branch.size() << " " <<training_data.size();
+	
+	//testing 	
+
 	/* Build Decision Tree using GINI-index  */
 			
 
@@ -105,7 +108,12 @@ float gini_index(int cat, int val, std::vector<DataSetItem> training_data)
 {
 	//Number of occurences of any label for a particualar (cat:val) key,value pair 
 	std::map<int, int> num_occ_label;
-    int total_items = 0;
+
+	//Number of occurences of any label for all other pairs involving the same category
+	std::map<int, int> num_occ_other_label;
+
+    int total_items_t = 0;
+    int total_items_f = 0;
 	for(auto it = training_data.begin(); it!= training_data.end(); ++it)
 	{
 		DataSetItem temp_item = *it;
@@ -123,17 +131,40 @@ float gini_index(int cat, int val, std::vector<DataSetItem> training_data)
 			{
 				num_occ_label[temp_label]=1;
 			}
-            total_items++;
+            total_items_t++;
 		}
+		else
+		{
+			if(num_occ_other_label.find(temp_label) != num_occ_other_label.end())
+			{
+				num_occ_other_label[temp_label] = 0;
+			}
+			num_occ_other_label[temp_label]++;
+			total_items_f++;
+		}
+
 	}
+
+	int total_items = training_data.size();
 	
-    float temp_val;
-	float temp_gini_index = 1.0;
+    float temp_val1;
+	float temp_gini_index_t = 1.0;
 	for(auto const& x: num_occ_label)
 	{
-        temp_val= float(x.second)/float(total_items);
-		temp_gini_index-= pow(temp_val,2.0);
+        temp_val1= float(x.second)/float(total_items_t);
+		temp_gini_index_t-= pow(temp_val1,2.0);
 	}
+
+	float temp_val2;
+	float temp_gini_index_f = 1.0
+	for(auto const& x: num_occ_label)
+	{
+        temp_val2= float(x.second)/float(total_items_f);
+		temp_gini_index_f-= pow(temp_val2,2.0);
+	}
+
+	float temp_gini_index = float(total_items_t)/float(total_items) * temp_gini_index_t
+							+float(total_items_f)/float(total_items) * temp_gini_index_f;
 	return temp_gini_index;
 }
 
@@ -161,3 +192,22 @@ void partition(Question qsplit, std::vector<DataSetItem> input_set, std::vector<
 		}
 	}
 }
+/*
+std::pair<float, Question> find_best_split(std::vector<DataSetItem> input_set, std::map<int, std::vector<int>> cat_vals)
+{
+	float best_gini = 1.0;
+	float gini_val;
+	Question best_question;
+
+	for(auto const & x: cat_vals)
+	{
+		for(auto it = x.second.begin(); it != x.second.end(); ++it)
+		{
+			Question cand_q (x.first, *it);
+			gini_val = gini_index(x.first, *it, input_set);
+
+			if gini_val <= 
+		}
+	}	
+}
+*/
