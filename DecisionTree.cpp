@@ -87,7 +87,8 @@ int main(int argc, char ** argv){
 
 	/* Build Decision Tree using GINI-index  */
 	
-    d_tree* decision_tree = new d_tree(build_tree(training_data,cat_vals));
+	DecisionNode* root_node = build_tree(training_data,cat_vals);
+    d_tree* decision_tree = new d_tree(root_node);
     std::cout << decision_tree->root->get_category();
 	/* Populate test data vector */
 	//std::vector<DataSetItem> test_data;
