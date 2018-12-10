@@ -56,35 +56,6 @@ int main(int argc, char ** argv){
 		}
 	}
 
-	//test gini_index
-	for(auto const& x: cat_vals)
-	{
-		for (auto it = x.second.begin(); it!= x.second.end(); ++it)
-		{
-			std::cout << gini_index(x.first, *it, training_data) << "\n";
-		}
-	}
-	//test partition
-
-	std::vector<DataSetItem> true_branch;
-	std::vector<DataSetItem> false_branch;
-	Question testq(1,1);
-	partition(testq, training_data, true_branch, false_branch);
-
-	for (auto it = true_branch.begin(); it != true_branch.end(); ++it)
-	{
-		it->print_dataset_item();
-	}
-
-	for (auto it = false_branch.begin(); it!= false_branch.end(); ++it)
-	{
-		it->print_dataset_item();
-	}
-    std::cout << false_branch.size() + true_branch.size() << " " <<training_data.size();
-	
-	//test find_best_split
-    Question check = find_best_split(training_data, cat_vals);
-
 	/* Build Decision Tree using GINI-index  */
 	
 	DecisionNode* root_node = build_tree(training_data,cat_vals);
