@@ -1,9 +1,9 @@
 #include "d_tree.h"
 #include <iostream>
 
-d_tree::d_tree((std::vector<DataSetItem> input_set, std::map<int, std::vector<int>> cat_vals)
+d_tree::d_tree(std::vector<DataSetItem> input_set, std::map<int, std::vector<int>> cat_vals)
 {
-	root = _build_tree((std::vector<DataSetItem> input_set, std::map<int, std::vector<int>> cat_vals);
+	root = _build_tree(std::vector<DataSetItem> input_set, std::map<int, std::vector<int>> cat_vals);
 }
 
 d_tree::~d_tree()
@@ -56,7 +56,7 @@ DecisionNode* d_tree::_build_tree(std::vector<DataSetItem> input_set, std::map<i
 
 	return sub_root;
 }
-float _gini_index(int cat, int val, std::vector<DataSetItem> training_data)
+float d_tree::_gini_index(int cat, int val, std::vector<DataSetItem> training_data)
 {
 	//Number of occurences of any label for a particualar (cat:val) key,value pair 
 	std::map<int, int> num_occ_label;
@@ -120,7 +120,7 @@ float _gini_index(int cat, int val, std::vector<DataSetItem> training_data)
 	return temp_gini_index;
 }
 
-void _partition(Question qsplit, std::vector<DataSetItem> input_set, std::vector<DataSetItem> & true_branch_set, std::vector<DataSetItem> & false_branch_set)
+void d_tree::_partition(Question qsplit, std::vector<DataSetItem> input_set, std::vector<DataSetItem> & true_branch_set, std::vector<DataSetItem> & false_branch_set)
 {
 	int category = qsplit.get_category();
 	std::pair<int, int> item_pair;
