@@ -12,7 +12,7 @@ float gini_index(int split_cat, int split_val, std::vector<DataSetItem> training
 
 void partition( Question qsplit, std::vector<DataSetItem> input_set, std::vector<DataSetItem> & true_branch_set, std::vector<DataSetItem> & false_branch_set);
 
-//std::pair<float, Question> find_best_split(std::vector<DataSetItem> input_set, std::map<int, std::vector<int>> cat_vals);
+std::pair<float, Question> find_best_split(std::vector<DataSetItem> input_set, std::map<int, std::vector<int>> cat_vals);
 
 //DecisionNode build_tree();
 
@@ -82,7 +82,8 @@ int main(int argc, char ** argv){
 	}
     std::cout << false_branch.size() + true_branch.size() << " " <<training_data.size();
 	
-	//testing 	
+	//test find_best_split
+    std::pair<float, Question> check = find_best_split(training_data, cat_vals);
 
 	/* Build Decision Tree using GINI-index  */
 			
@@ -192,22 +193,39 @@ void partition(Question qsplit, std::vector<DataSetItem> input_set, std::vector<
 		}
 	}
 }
-/*
+
 std::pair<float, Question> find_best_split(std::vector<DataSetItem> input_set, std::map<int, std::vector<int>> cat_vals)
 {
 	float best_gini = 1.0;
 	float gini_val;
 	Question best_question;
+	std::vector<DataSetItem> true_branch;
+	std::vector<DataSetItem> false_branch;
 
 	for(auto const & x: cat_vals)
 	{
 		for(auto it = x.second.begin(); it != x.second.end(); ++it)
 		{
 			Question cand_q (x.first, *it);
+
+			partition(cand_q, input_set, true_branch, false_branch);
+
+			if(true_branch.size()==0 || false_branch.size()==0)
+			{
+				continue;
+			}
+
 			gini_val = gini_index(x.first, *it, input_set);
 
-			if gini_val <= 
+			std::cout <<gini_val << "\n";
+
+			if (gini_val <= best_gini)
+			{
+				best_gini = gini_val;
+				best_question = cand_q;
+			}
 		}
-	}	
+	}
+	return std::pair<float,Question> (gini_val, best_question);	
 }
-*/
+
