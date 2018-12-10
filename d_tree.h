@@ -8,7 +8,7 @@
 class d_tree
 {
 	public:
-		d_tree(std::vector<DataSetItem> input_set, std::map<int, std::vector<int>> cat_vals, , std::vector<int> all_labels);
+		d_tree(std::vector<DataSetItem> input_set, std::map<int, std::vector<int>> cat_vals, std::vector<int> all_labels);
 		void print_tree(void);
 		//output k*k confusion matrix
 		std::vector<std::vector<int>> classify(std::vector<DataSetItem> test_data);
