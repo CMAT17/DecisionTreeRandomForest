@@ -11,7 +11,7 @@ d_tree::~d_tree()
 	_blow_up_tree(root);
 }
 
-d_tree::print_tree()
+d_tree::print_tree(void)
 {
 	_print_tree(root);
 }

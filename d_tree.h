@@ -9,7 +9,7 @@ class d_tree
 {
 	public:
 		d_tree(std::vector<DataSetItem> input_set, std::map<int, std::vector<int>> cat_vals);
-		void print_tree();
+		void print_tree(void);
 		~d_tree();
 	private:
 		DecisionNode* root;
