@@ -55,16 +55,56 @@ int main(int argc, char ** argv){
 		}
 	}
 
-	/* Build Decision Tree using GINI-index  */
-	
-    d_tree decision_tree(training_data,cat_vals, all_labels);
-	/* Populate test data vector */
+/* Populate test data vector */
 	std::vector<DataSetItem> test_data;
 	test_data = file_parser(argv[2]);
-
-	/* Classify test set */
 	
-	std::vector<std::vector<int>> confusion_mtx = decision_tree.classify(test_data);
+	int temp;
+	std::vector<std::vector<int>> confusion_mtx(all_labels.size(),std::vector<int>(all_labels.size(),0));
+	/* Classify test set */
+	for(auto it = test_data.begin(); it!= test_data.end(); ++it)
+	{
+		std::map<int, int> label_map;
+		temp = rand_tree1.classify_single(*it);
+		if(temp < all_labels.size())
+		{
+			if(label_map.find(temp)==label_map.end())
+				label_map[temp] = 0;
+			label_map[temp]++;
+		}
+		temp = rand_tree1.classify_single(*it);
+		if(temp < all_labels.size())
+		{
+			if(label_map.find(temp)==label_map.end())
+				label_map[temp] = 0;
+			label_map[temp]++;
+		}
+		temp = rand_tree1.classify_single(*it);
+		if(temp < all_labels.size())
+		{
+			if(label_map.find(temp)==label_map.end())
+				label_map[temp] = 0;
+			label_map[temp]++;
+		}
+		temp = rand_tree1.classify_single(*it);
+		if(temp < all_labels.size())
+		{
+			if(label_map.find(temp)==label_map.end())
+				label_map[temp] = 0;
+			label_map[temp]++;
+		}
+		int max=0;
+		int mode = -1;
+		for (auto const & x: label_map)
+		{
+			if(x.second>=max)
+			{
+				max = x.second;
+				mode = x.first;
+			}
+		}
+		confusion_mtx[it->get_label][mode]++;
+	}
 
 	/* Confusion matrix */
 	/**
