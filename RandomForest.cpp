@@ -54,6 +54,35 @@ int main(int argc, char ** argv){
 			}
 		}
 	}
+	int num_cat = cat_vals.size();
+
+	int cat_per_tree = num_cat/4 +2;
+
+	std::map<int, std::vector<int>> cat_vals_1;	
+	std::map<int, std::vector<int>> cat_vals_2;	
+	std::map<int, std::vector<int>> cat_vals_3;	
+	std::map<int, std::vector<int>> cat_vals_4;
+	int output_rand;
+	for(int i=0; i<cat_per_tree; ++i)
+	{
+		output_rand =  rand()%(127);
+		if(cat_vals_1.find(output_rand)!= cat_vals_1.end())
+			cat_vals_1[output_rand] = cat_vals[output_rand];
+		output_rand =  rand()%(127);
+		if(cat_vals_2.find(output_rand)!= cat_vals_2.end())
+			cat_vals_1[output_rand] = cat_vals[output_rand];
+		output_rand =  rand()%(127);
+		if(cat_vals_3.find(output_rand)!= cat_vals_3.end())
+			cat_vals_3[output_rand] = cat_vals[output_rand];
+		output_rand =  rand()%(127);
+		if(cat_vals_4.find(output_rand)!= cat_vals_4.end())
+			cat_vals_4[output_rand] = cat_vals[output_rand];
+	}
+
+    d_tree rand_tree1(training_data,cat_vals1, all_labels);
+    d_tree rand_tree2(training_data,cat_vals2, all_labels);
+    d_tree rand_tree3(training_data,cat_vals3, all_labels);
+    d_tree rand_tree4(training_data,cat_vals4, all_labels);
 
 /* Populate test data vector */
 	std::vector<DataSetItem> test_data;
