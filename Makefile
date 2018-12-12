@@ -34,8 +34,13 @@ file_parser.o: file_parser.cpp datasetitem.h file_parser.h
 DecisionTree.o: DecisionTree.cpp datasetitem.h file_parser.h
 	$(CXX) $(CXXFLAGS) $< -o $@
 
+$(OBJS_ENSEM): RandomForest.cpp datasetitem.h file_parser.h
+	$(CXX) $(CXXFLAGS) $< -o $@
+
 $(TREE_EXE): $(OBJS_SHARED) $(OBJS_TREE)
 	$(LD) $^ $(LDFLAGS) -o $@  
+
+$(ENSEM_EXE): $(OBJS_SHARED) $(OBJS_ENSEM)
 
 clean:
 	rm -fr *.o DecisionTree
