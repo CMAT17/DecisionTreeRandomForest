@@ -41,6 +41,7 @@ $(TREE_EXE): $(OBJS_SHARED) $(OBJS_TREE)
 	$(LD) $^ $(LDFLAGS) -o $@  
 
 $(ENSEM_EXE): $(OBJS_SHARED) $(OBJS_ENSEM)
+	$(LD) $^ $(LDFLAGS) -o $@ 
 
 clean:
 	rm -fr *.o DecisionTree

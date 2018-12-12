@@ -79,10 +79,10 @@ int main(int argc, char ** argv){
 			cat_vals_4[output_rand] = cat_vals[output_rand];
 	}
 
-    d_tree rand_tree1(training_data,cat_vals1, all_labels);
-    d_tree rand_tree2(training_data,cat_vals2, all_labels);
-    d_tree rand_tree3(training_data,cat_vals3, all_labels);
-    d_tree rand_tree4(training_data,cat_vals4, all_labels);
+    d_tree rand_tree1(training_data,cat_vals_1, all_labels);
+    d_tree rand_tree2(training_data,cat_vals_2, all_labels);
+    d_tree rand_tree3(training_data,cat_vals_3, all_labels);
+    d_tree rand_tree4(training_data,cat_vals_4, all_labels);
 
 /* Populate test data vector */
 	std::vector<DataSetItem> test_data;
