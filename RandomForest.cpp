@@ -88,13 +88,12 @@ int main(int argc, char ** argv){
 	std::vector<DataSetItem> test_data;
 	test_data = file_parser(argv[2]);
 	
-	int temp;
 	std::vector<std::vector<int>> confusion_mtx(all_labels.size(),std::vector<int>(all_labels.size(),0));
 	/* Classify test set */
 	for(auto it = test_data.begin(); it!= test_data.end(); ++it)
 	{
 		std::map<int, int> label_map;
-		temp = rand_tree1.classify_single(*it);
+		unsigned int temp = rand_tree1.classify_single(*it);
 		if(temp < all_labels.size())
 		{
 			if(label_map.find(temp)==label_map.end())
@@ -132,7 +131,7 @@ int main(int argc, char ** argv){
 				mode = x.first;
 			}
 		}
-		confusion_mtx[it->get_label][mode]++;
+		confusion_mtx[it->get_label()][mode]++;
 	}
 
 	/* Confusion matrix */
