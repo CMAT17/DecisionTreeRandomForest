@@ -254,3 +254,35 @@ std::vector<std::vector<int>> d_tree::classify(std::vector<DataSetItem> test_dat
 	}
 	return confusion_mtx;
 }
+
+int d_tree::classify_single(DataSetItem test_data)
+{
+	DecisionNode * subroot = root;
+	while(subroot)
+	{
+		if(subroot->get_leaf())
+		{
+			int prediction = subroot->get_prediction();
+			int label =test_data->get_label();
+			//Labels start at 1, indexing starts at 0
+			return label;
+		}
+		else
+		{
+			std::map<int,int> dim_map = test_data->get_dim_maps();
+			int cat = subroot->get_category();
+
+			std::pair<int,int> eval_pair(cat,dim_map[cat]);
+			bool q_result = subroot->eval_question(eval_pair);
+
+			if(q_result)
+			{
+				subroot = subroot->true_branch;
+			} 
+			else
+			{
+				subroot = subroot->false_branch;
+			}
+		}
+	}
+}

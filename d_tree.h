@@ -12,6 +12,7 @@ class d_tree
 		void print_tree(void);
 		//output k*k confusion matrix
 		std::vector<std::vector<int>> classify(std::vector<DataSetItem> test_data);
+		int classify_single(DataSetItem test_data);
 		~d_tree();
 	private:
 		std::vector<int> _all_labels;
