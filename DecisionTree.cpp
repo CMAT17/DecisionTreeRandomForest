@@ -75,7 +75,7 @@ int main(int argc, char ** argv){
 		{
 			std::cout << item << " ";
 		}
-		std::cout << endl;
+		std::cout << std::endl;
 	}
 
 	return 0;
