@@ -226,10 +226,10 @@ std::vector<std::vector<int>> d_tree::classify(std::vector<DataSetItem> test_dat
 		{
 			if(subroot->get_leaf())
 			{
-				int prediction = subroot->get_prediction();
-				int label = it->get_label();
+				unsigned int prediction = subroot->get_prediction();
+				unsigned int label = it->get_label();
 				//Labels start at 1, indexing starts at 0
-				if(labels-1< _all_labels.size() && prediction-1 < _all_labels.size())
+				if(label-1< _all_labels.size() && prediction-1 < _all_labels.size())
 					confusion_mtx[label-1][prediction-1]++;
 				break;
 			}
@@ -263,13 +263,12 @@ int d_tree::classify_single(DataSetItem test_data)
 		if(subroot->get_leaf())
 		{
 			int prediction = subroot->get_prediction();
-			int label =test_data->get_label();
 			//Labels start at 1, indexing starts at 0
-			return label;
+			return prediction;
 		}
 		else
 		{
-			std::map<int,int> dim_map = test_data->get_dim_maps();
+			std::map<int,int> dim_map = test_data.get_dim_maps();
 			int cat = subroot->get_category();
 
 			std::pair<int,int> eval_pair(cat,dim_map[cat]);
@@ -285,4 +284,5 @@ int d_tree::classify_single(DataSetItem test_data)
 			}
 		}
 	}
+    return -1;
 }

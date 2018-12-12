@@ -14,7 +14,7 @@ WARNINGS = -pedantic -Wall -Werror -Wfatal-errors -Wextra -Wunused-parameter -Wu
 CXXFLAGS = -std=c++0x -g -O0 $(WARNINGS)  -c -ggdb3
 LDFLAGS = -std=c++0x 
 
-all: $(TREE_EXE)
+all: $(TREE_EXE) $(ENSEM_EXE)
 
 d_tree.o: d_tree.cpp d_tree.h
 	$(CXX) $(CXXFLAGS) $< -o $@
