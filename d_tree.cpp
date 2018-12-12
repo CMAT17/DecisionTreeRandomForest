@@ -229,7 +229,8 @@ std::vector<std::vector<int>> d_tree::classify(std::vector<DataSetItem> test_dat
 				int prediction = subroot->get_prediction();
 				int label = it->get_label();
 				//Labels start at 1, indexing starts at 0
-				confusion_mtx[label-1][prediction-1]++;
+				if(labels-1< _all_labels.size() && prediction-1 < _all_labels.size())
+					confusion_mtx[label-1][prediction-1]++;
 				break;
 			}
 			else
